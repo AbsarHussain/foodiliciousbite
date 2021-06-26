@@ -18,8 +18,8 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 	$_SESSION["long"]=$user_long;
 	}
 	elseif(isset($_SESSION["lat"]) && isset($_SESSION["long"])){
-	$user_lat=$_SESSION["lat"]; 
-	$user_long=$_SESSION["long"];
+	$user_lat='24.5'; 
+	$user_long='24.5';
 
 	}
 	else{
@@ -103,7 +103,7 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 		S.shop_currency,((ABS(S.shop_lat-".$user_lat.")+ABS(S.shop_long-".$user_long."))*100) as 'distance',
 		SIM.image_name as thumbnail
 		from t_shops S 
-		JOIN t_images SIM ON SIM.shop_id=S.shop_id
+		LEFT JOIN t_images SIM ON SIM.shop_id=S.shop_id
         where S.shop_lat is not NULL and SIM.status='NOT DELETED' 
 		order by distance ASC ";
   
@@ -274,7 +274,7 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 		$Details=$row['Details'];
 $Details = substr($Details,0,100);		
 $distance=ceil($row['distance']);
- if ( intval($distance)>40) {
+ if ( intval($distance)>40000) {
     break;
   }
 		
