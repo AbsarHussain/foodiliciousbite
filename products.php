@@ -289,7 +289,7 @@ $distance=ceil($row['distance']);
 		echo "<div class='menu-item' id='rounded_corners'>";
 		
 		echo"<div id='example1'>";
-        echo "<img   id='rounded_corners' style=object-fit: contain' src='img/".$location."/".$thumbnail."'>";
+        echo "<img   id='rounded_corners' style=object-fit: contain' src='img/shop_images/main_photo.jpg'>";
 		
         //$title=chunk_split($title, 20) ."\n";
 		echo "<a  href='shops.php?shop_id=".$shop_id."&product_id=".$product_id."' ><div class='menu-item-name'><b>".$Name. "</b></a></div>";
