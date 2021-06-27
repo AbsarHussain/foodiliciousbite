@@ -23,9 +23,8 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 
 	}
 	else{
-	echo "<script>
-			window.location.href='index.php';
-			</script>";
+	$user_lat='24.5'; 
+	$user_long='24.5';
 		
 	}
   // If upload button is clicked ...

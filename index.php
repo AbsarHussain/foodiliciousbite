@@ -13,7 +13,7 @@ session_start();
     function showPosition() {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                window.location='products.php?lat='+position.coords.latitude+'&long='+position.coords.longitude;
+                window.location='products.php';
                 
                 
 
