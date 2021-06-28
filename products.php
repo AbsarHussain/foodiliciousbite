@@ -99,12 +99,8 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 	 }
 	 else{
 		   $query = "select '' as product_id,S.shop_name as Name,S.shop_note as Details,S.shop_id,
-		S.shop_currency,((ABS(S.shop_lat-".$user_lat.")+ABS(S.shop_long-".$user_long."))*100) as 'distance',
-		SIM.image_name as thumbnail
-		from t_shops S 
-		LEFT JOIN t_images SIM ON SIM.shop_id=S.shop_id
-        where S.shop_lat is not NULL and SIM.status='NOT DELETED' 
-		order by distance ASC ";
+		S.shop_currency
+		from t_shops S ";
   
     $result = mysqli_query($db, $query);
 		 
