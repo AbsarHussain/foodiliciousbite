@@ -18,13 +18,14 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 	$_SESSION["long"]=$user_long;
 	}
 	elseif(isset($_SESSION["lat"]) && isset($_SESSION["long"])){
-	$user_lat='24.5'; 
-	$user_long='24.5';
+	$user_lat=$_SESSION["lat"]; 
+	$user_long=$_SESSION["long"];
 
 	}
 	else{
-	$user_lat='24.5'; 
-	$user_long='24.5';
+	echo "<script>
+			window.location.href='index.php';
+			</script>";
 		
 	}
   // If upload button is clicked ...
@@ -99,8 +100,12 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 	 }
 	 else{
 		   $query = "select '' as product_id,S.shop_name as Name,S.shop_note as Details,S.shop_id,
-		S.shop_currency
-		from t_shops S ";
+		S.shop_currency,((ABS(S.shop_lat-".$user_lat.")+ABS(S.shop_long-".$user_long."))*100) as 'distance',
+		SIM.image_name as thumbnail
+		from t_shops S 
+		JOIN t_images SIM ON SIM.shop_id=S.shop_id
+        where S.shop_lat is not NULL and SIM.status='NOT DELETED' 
+		order by distance ASC ";
   
     $result = mysqli_query($db, $query);
 		 
@@ -269,7 +274,7 @@ $_SESSION["url"] = $_SERVER["REQUEST_URI"]."";
 		$Details=$row['Details'];
 $Details = substr($Details,0,100);		
 $distance=ceil($row['distance']);
- if ( intval($distance)>40000) {
+ if ( intval($distance)>40) {
     break;
   }
 		
@@ -284,7 +289,7 @@ $distance=ceil($row['distance']);
 		echo "<div class='menu-item' id='rounded_corners'>";
 		
 		echo"<div id='example1'>";
-        echo "<img   id='rounded_corners' style=object-fit: contain' src='img/shop_images/main_photo.jpg'>";
+        echo "<img   id='rounded_corners' style=object-fit: contain' src='img/".$location."/".$thumbnail."'>";
 		
         //$title=chunk_split($title, 20) ."\n";
 		echo "<a  href='shops.php?shop_id=".$shop_id."&product_id=".$product_id."' ><div class='menu-item-name'><b>".$Name. "</b></a></div>";
