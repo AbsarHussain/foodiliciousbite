@@ -1,5 +1,5 @@
 <?php
-   define('DB_SERVER', 'mysql.foodiliciousbite.com');
+   define('DB_SERVER', 'sqatest.ceea2phu180k.us-east-1.rds.amazonaws.com');
    define('DB_USERNAME', 'biteuser');
    define('DB_PASSWORD', 'Abs159..');
    define('DB_DATABASE', 'foodiliciousbite');
