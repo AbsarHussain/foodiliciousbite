@@ -1,7 +1,7 @@
 <?php
-define('DB_SERVER','localhost');
-define('DB_USER','root');
-define('DB_PASS' ,'');
+define('DB_SERVER','sqatest.ceea2phu180k.us-east-1.rds.amazonaws.com');
+define('DB_USER','biteuser');
+define('DB_PASS' ,'Abs159..');
 define('DB_NAME', 'shopping');
 $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 // Check connection
